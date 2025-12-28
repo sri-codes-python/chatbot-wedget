@@ -138,7 +138,8 @@ const ChatWidget = ({ isOpen, onClose }) => {
 
   return (
     <div 
-      className="fixed bottom-24 right-6 w-96 h-[500px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50 border border-gray-100"
+      className="fixed bottom-44 right-6 w-96 h-[500px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-100"
+      style={{ zIndex: 10001 }}
       data-testid="chat-widget"
     >
       {/* Header */}
