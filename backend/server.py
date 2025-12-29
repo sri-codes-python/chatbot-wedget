@@ -29,367 +29,407 @@ api_router = APIRouter(prefix="/api")
 # Emergent LLM Key
 EMERGENT_LLM_KEY = os.environ.get('EMERGENT_LLM_KEY', '')
 
-# Curry Pizza House Complete Menu Data
+# Curry Pizza House ACTUAL Menu Data from PDFs
 MENU_DATA = """
 ================================================================================
-                    CURRY PIZZA HOUSE - COMPLETE MENU
+                    CURRY PIZZA HOUSE - COMPLETE MENU (Portland)
 ================================================================================
 
-🏪 ABOUT US:
-- Indian Fusion Pizza Restaurant
-- All chicken and lamb are HALAL certified
-- Only Vindaloo Pizza contains pork (NOT halal)
-- NO BBQ sauce - we use authentic Indian curry sauces
+📏 PIZZA SLICE COUNT BY SIZE:
+- Personal 8": 6 slices
+- Small 10": 8 slices
+- Medium 12": 10 slices
+- Large 14": 12 slices
+- X-Large 18": 16 slices
 
 ================================================================================
-🍗 WINGS MENU
+🍕 CLASSIC PIZZAS
 ================================================================================
+All Classic Pizzas Pricing:
+- Small (10"): $17.99
+- Medium (12"): $22.99
+- Large (14"): $29.99
+- X-Large (18"): $37.99
+- Gluten-Free (12"): $25.99
+- Cauliflower Crust (12"): $25.99
 
-### Tandoori Wings (Bone-In) - Our Signature!
-Marinated in yogurt and tandoori spices, grilled to perfection
-- 6 Wings: $8.99
-- 12 Wings: $15.99
-- 18 Wings: $22.99
-- 24 Wings: $28.99
-- Sauce Options: Mint Chutney, Mango Habanero, Tikka Masala Glaze
-- Allergens: Dairy
-- Halal: Yes
+### Garden Veggie 🌱
+- **Toppings:** White sauce, spinach, cheese, zucchini, mushrooms, red onions, diced tomatoes, artichokes, garlic, and green onions
+- **Category:** Vegetarian
 
-### Curry Chicken Wings (Bone-In)
-Tossed in our signature curry sauce
-- 6 Wings: $9.99
-- 12 Wings: $17.99
-- 18 Wings: $24.99
-- 24 Wings: $31.99
-- Sauce Options: Butter Chicken, Tikka Masala, Vindaloo (spicy)
-- Allergens: Dairy
-- Halal: Yes
+### Margherita 🌱
+- **Toppings:** Red sauce, fresh basil, garlic tomatoes, cheese, more fresh basil
+- **Category:** Vegetarian
 
-### Boneless Wings / Chicken Bites
-Crispy boneless chicken pieces with Indian spices
-- 8 Pieces: $9.99
-- 16 Pieces: $17.99
-- 24 Pieces: $24.99
-- Sauce Options: Any curry sauce
-- Allergens: Dairy, Gluten
-- Halal: Yes
+### Premium Veggie 🌱
+- **Toppings:** Red sauce, cheese, mushrooms, bell peppers, black olives, red onions, diced tomatoes and artichokes
+- **Category:** Vegetarian
 
-================================================================================
-🍕 CURRY CHICKEN PIZZAS (Non-Vegetarian)
-================================================================================
+### BBQ Chicken 🍗
+- **Toppings:** BBQ sauce, cheese, chicken, bacon and pineapple
+- **Category:** Non-Veg
 
-### 1. Butter Chicken Pizza ⭐ BESTSELLER
-Also known as: "Curry Chicken", "Butter Curry Pizza"
-- Small (10"): $14.99 | Medium (12"): $18.99 | Large (14"): $22.99
-- Sauce: Creamy Butter Chicken Curry (tomato-cream with cashews)
-- Toppings: Tender chicken pieces, bell peppers, red onions, cilantro
-- Cheese: Mozzarella blend
-- Spice Level: Mild (can be made spicier on request)
-- Allergens: Dairy, Gluten, Nuts (cashew)
-- Halal: Yes ✓
+### Buffalo Chicken 🍗
+- **Toppings:** White sauce, cheese, red onions, tomatoes, buffalo chicken
+- **Category:** Non-Veg
 
-### 2. Chicken Tikka Masala Pizza
-Also known as: "Tikka Pizza", "Masala Chicken Pizza"
-- Small (10"): $15.99 | Medium (12"): $19.99 | Large (14"): $23.99
-- Sauce: Tikka Masala (spiced tomato-cream)
-- Toppings: Chicken tikka pieces, roasted bell peppers, red onions
-- Cheese: Fresh mozzarella
-- Spice Level: Medium
-- Allergens: Dairy, Gluten
-- Halal: Yes ✓
+### Chicken Supreme 🍗
+- **Toppings:** White sauce, cheese, chicken, bacon, diced tomatoes and green onions
+- **Category:** Non-Veg
 
-### 3. Tandoori Chicken Pizza
-Also known as: "Tandoori Pizza"
-- Small (10"): $14.99 | Medium (12"): $18.99 | Large (14"): $22.99
-- Sauce: Mint Chutney base with tandoori spices
-- Toppings: Smoky tandoori chicken, red onions, jalapeños, cilantro
-- Cheese: Mozzarella
-- Spice Level: Medium-Hot 🌶️
-- Allergens: Dairy, Gluten
-- Halal: Yes ✓
+### Classic Combination 🥩
+- **Toppings:** Red sauce, cheese, salami, pepperoni, mushrooms, bell peppers, black olives, red onions, sausage, and beef
+- **Category:** Non-Veg
 
-### 4. Keema Pizza (Lamb) ⭐ HALAL LAMB
-Also known as: "Lamb Pizza", "Minced Meat Pizza"
-- Small (10"): $15.99 | Medium (12"): $19.99 | Large (14"): $23.99
-- Sauce: Spiced Tomato Keema Sauce
-- Toppings: Spiced minced lamb, green peas, onions, garam masala
-- Cheese: Mozzarella
-- Spice Level: Medium
-- Allergens: Dairy, Gluten
-- Halal: YES - Certified Halal Lamb ✓
+### Hawaiian 🥩
+- **Toppings:** Red sauce, cheese, ham and pineapple
+- **Category:** Non-Veg
 
-### 5. Vindaloo Pizza 🔥🔥🔥 (VERY SPICY - Contains Pork)
-- Small (10"): $15.99 | Medium (12"): $19.99 | Large (14"): $23.99
-- Sauce: Vindaloo Curry (very spicy!)
-- Toppings: Pork pieces, potatoes, hot chilies
-- Cheese: Mozzarella
-- Spice Level: EXTRA HOT 🔥🔥🔥
-- Allergens: Dairy, Gluten
-- Halal: NO ✗ (Contains Pork)
+### Meat Lover's 🥩
+- **Toppings:** Red sauce, cheese, ham, salami, pepperoni, sausage, and beef
+- **Category:** Non-Veg
+
+### Mexican 🥩
+- **Toppings:** Red sauce, cheese, red onions, diced tomatoes, jalapenos, beef, sausage and fresh cilantro
+- **Category:** Non-Veg
+
+### Pesto Chicken 🍗
+- **Toppings:** Pesto sauce, cheese, red onions, diced tomatoes, and chicken
+- **Category:** Non-Veg
+
+### Sizzling Bacon 🥓
+- **Toppings:** White sauce, cheese, ham, mushrooms, black olives, bacon and green onions
+- **Category:** Non-Veg
 
 ================================================================================
-🥬 VEGETARIAN CURRY PIZZAS
+🍛 CRAFT CURRY PIZZAS - VEGETARIAN
 ================================================================================
+All Craft Curry Pizzas Pricing:
+- Small (10"): $17.99
+- Medium (12"): $22.99
+- Large (14"): $29.99
+- X-Large (18"): $37.99
+- Gluten-Free (12"): $25.99
+- Cauliflower Crust (12"): $25.99
 
-### 6. Paneer Tikka Pizza 🌱
-Also known as: "Paneer Pizza", "Cottage Cheese Pizza"
-- Small (10"): $13.99 | Medium (12"): $17.99 | Large (14"): $21.99
-- Sauce: Spiced Tomato Tikka Sauce
-- Toppings: Marinated paneer cubes, bell peppers, onions, fresh herbs
-- Cheese: Mozzarella + Paneer
-- Spice Level: Medium
-- Allergens: Dairy, Gluten
-- Vegetarian: Yes ✓
+### Achari Gobhi 🌱
+- **Toppings:** White garlic sauce, cheese, onions, tomatoes, marinated cauliflower, and fresh cilantro
+- **Category:** Vegetarian
 
-### 7. Achari Gobhi Pizza 🌱 ⭐ MOST POPULAR VEGETARIAN
-Also known as: "Cauliflower Pizza", "Pickle Pizza", "Gobhi Pizza"
-- Small (10"): $12.99 | Medium (12"): $16.99 | Large (14"): $20.99
-- Sauce: Achari (Pickle) Masala - tangy and spicy
-- Toppings: Spiced cauliflower, green chilies, fresh coriander
-- Cheese: Mozzarella (Vegan option: No cheese)
-- Spice Level: Medium-Hot 🌶️
-- Allergens: Gluten, Mustard
-- Vegetarian: Yes ✓ | Vegan Option Available
+### Aloo Chaat 🌱
+- **Toppings:** Red sauce, marinated potatoes, red onions, cheese and fresh cilantro
+- **Category:** Vegetarian
 
-### 8. Saag Paneer Pizza 🌱
-Also known as: "Spinach Pizza", "Palak Paneer Pizza"
-- Small (10"): $13.99 | Medium (12"): $17.99 | Large (14"): $21.99
-- Sauce: Creamy Saag (Spinach) Sauce
-- Toppings: Paneer cubes, garlic, Indian spices
-- Cheese: Mozzarella + Paneer
-- Spice Level: Mild
-- Allergens: Dairy, Gluten
-- Vegetarian: Yes ✓
+### Aloo Gobhi 🌱
+- **Toppings:** Curry sauce, marinated potatoes, marinated cauliflower, red onions, cheese, and fresh cilantro
+- **Category:** Vegetarian
 
-### 9. Aloo Gobi Pizza 🌱
-Also known as: "Potato Cauliflower Pizza"
-- Small (10"): $11.99 | Medium (12"): $15.99 | Large (14"): $19.99
-- Sauce: Turmeric-Cumin Spiced Sauce
-- Toppings: Spiced potatoes, cauliflower, cumin seeds
-- Cheese: Mozzarella
-- Spice Level: Mild
-- Allergens: Dairy, Gluten
-- Vegetarian: Yes ✓
+### Chilli Paneer 🌱 🌶️
+- **Toppings:** Curry sauce, cheese, bell peppers, diced tomatoes, red onions, masala paneer, green onions and fresh cilantro
+- **Category:** Vegetarian
 
-### 10. Chana Masala Pizza 🌱 (Vegan Available)
-Also known as: "Chickpea Pizza"
-- Small (10"): $12.99 | Medium (12"): $16.99 | Large (14"): $20.99
-- Sauce: Chana Masala (spiced tomato)
-- Toppings: Chickpeas, tomatoes, onions, cumin, coriander
-- Cheese: Mozzarella (Vegan: No cheese)
-- Spice Level: Medium
-- Allergens: Gluten
-- Vegetarian: Yes ✓ | Vegan Option Available
+### Curry Veggie Delight 🌱
+- **Toppings:** Curry sauce, cheese, mushrooms, bell peppers, olives, red onions, jalapenos, diced tomatoes, and fresh cilantro
+- **Category:** Vegetarian
 
-### 11. Malai Kofta Pizza 🌱
-Also known as: "Kofta Pizza", "Veggie Balls Pizza"
-- Small (10"): $14.99 | Medium (12"): $18.99 | Large (14"): $22.99
-- Sauce: Malai (Cream) Tomato Sauce
-- Toppings: Vegetable kofta balls, cream sauce
-- Cheese: Mozzarella
-- Spice Level: Mild
-- Allergens: Dairy, Gluten, Nuts
-- Vegetarian: Yes ✓
+### Indian Gourmet Veg 🌱
+- **Toppings:** Red sauce, cheese, mushrooms, bell peppers, olives, red onions, diced tomatoes, garlic, ginger and fresh cilantro
+- **Category:** Vegetarian
+
+### Jain Veggie 🌱 (No Onion/Garlic/Ginger)
+- **Toppings:** Vegan red sauce (jain), cheese, diced tomatoes, bell peppers, olives and fresh cilantro
+- **Category:** Vegetarian, Jain-friendly
+
+### Malai Paneer 🌱
+- **Toppings:** Malai sauce, cheese, diced tomatoes, red onions, masala paneer
+- **Category:** Vegetarian
+
+### Palak Paneer 🌱
+- **Toppings:** Pesto sauce, cheese, spinach, masala paneer, red onions, green chili, ginger and garlic
+- **Category:** Vegetarian
+
+### Shahi Paneer 🌱
+- **Toppings:** Shahi sauce, cheese, bell peppers, diced tomatoes, red onions, masala paneer, black olives, green onions and fresh cilantro
+- **Category:** Vegetarian
 
 ================================================================================
-🥗 APPETIZERS & SIDES
+🍛 CRAFT CURRY PIZZAS - NON-VEGETARIAN
 ================================================================================
 
-### Samosas (Vegetable)
-Crispy pastry filled with spiced potatoes and peas
-- 2 Pieces: $4.99
-- 4 Pieces: $8.99
-- 6 Pieces: $12.99
-- Served with: Mint & Tamarind Chutney
-- Vegetarian: Yes | Allergens: Gluten
+### Achari Chicken 🍗
+- **Toppings:** White sauce, cheese, red onions, diced tomatoes and achari chicken
+- **Category:** Non-Veg
 
-### Chicken Samosas
-Crispy pastry filled with spiced chicken
-- 2 Pieces: $5.99
-- 4 Pieces: $10.99
-- 6 Pieces: $14.99
-- Served with: Mint & Tamarind Chutney
-- Halal: Yes | Allergens: Gluten
+### Butter Chicken 🍗 ⭐ POPULAR
+- **Toppings:** Butter chicken sauce, cheese, diced tomatoes, red onions and butter chicken
+- **Category:** Non-Veg
 
-### Garlic Naan Sticks
-- Regular Order (4 sticks): $5.99
-- Large Order (8 sticks): $10.99
-- Served with: Curry dipping sauce
-- Vegetarian: Yes | Allergens: Dairy, Gluten
+### Chicken Tikka 🍗
+- **Toppings:** White sauce, cheese, diced tomatoes, red onions, chicken tikka, green onions and fresh cilantro
+- **Category:** Non-Veg
 
-### Paneer Pakora
-Crispy fried paneer fritters
-- 6 Pieces: $7.99
-- 12 Pieces: $13.99
-- Vegetarian: Yes | Allergens: Dairy, Gluten
+### Curry Chicken Masala 🍗
+- **Toppings:** Curry sauce, cheese, bell peppers, diced tomatoes, red onions, masala chicken and fresh cilantro
+- **Category:** Non-Veg
 
-### Onion Bhaji
-Crispy onion fritters
-- 6 Pieces: $5.99
-- 12 Pieces: $10.99
-- Vegetarian: Yes | Vegan: Yes | Allergens: Gluten
+### Desi BBQ Chicken 🍗
+- **Toppings:** BBQ sauce, cheese, red onions and desi BBQ chicken
+- **Category:** Non-Veg
+
+### Lamb Kabob (Halal) 🐑 ✓
+- **Toppings:** Curry sauce, cheese, red onions, garlic, halal ground lamb and fresh cilantro
+- **Category:** Non-Veg, HALAL
+
+### Malai Chicken 🍗
+- **Toppings:** Malai sauce, cheese, onions, tomatoes and marinated chicken
+- **Category:** Non-Veg
+
+### Tandoori Chicken 🍗
+- **Toppings:** White sauce, cheese, bell peppers, red onions, diced tomatoes, tandoori chicken and fresh cilantro
+- **Category:** Non-Veg
+
+================================================================================
+🍗 WINGS
+================================================================================
+
+### 5 Pieces - $8.99
+### 10 Pieces - $16.99
+### 20 Pieces Wings Sampler - $29.99 (Up to 4 flavors, 5 pieces each)
+
+**Available Flavors:**
+- Boneless Tikka
+- Curry
+- Tandoori
+- BBQ
+- Lemon Pepper
+- Achari
+- Hot
+- Mango Habanero
+
+**Dips/Dressings (Add-ons):**
+- Ranch Dip: $0.50
+- Jalapeno Ranch: $0.50
+- Marinara Sauce: $0.50
+- BBQ Sauce: $0.50
+
+================================================================================
+🍟 SMALL PLATES / APPETIZERS
+================================================================================
+
+- Garlic Sticks w/ Cheese: $7.99
+- Garlic Sticks w/ Cheese, Jalapenos & Pineapple: $9.99
+- Desi Garlic Sticks: $9.99
+- Jalapeno Poppers: $7.99
+- Masala Chips: $7.99
+- Mozzarella Sticks: $7.99
+- Onion Rings: $7.99
+- Samosa (Potato): $7.99+
+- Seasoned Fries: $5.99
+
+================================================================================
+🥗 SALADS
+================================================================================
+
+### Caesar Salad - $7.99
+- Romaine lettuce, grated parmesan cheese, seasoned croutons and caesar dressing
+- Add Chicken: +$2
+
+### Spicy Chicken Caesar Salad - $9.99
+- Romaine lettuce, grated parmesan cheese, seasoned croutons, caesar dressing and chicken tikka
 
 ================================================================================
 🥤 BEVERAGES
 ================================================================================
 
-### Mango Lassi - $4.99
-Sweet yogurt drink with mango | Allergens: Dairy
-
-### Sweet Lassi - $3.99
-Traditional sweet yogurt drink | Allergens: Dairy
-
-### Salted Lassi - $3.99
-Savory yogurt drink with cumin | Allergens: Dairy
-
-### Masala Chai - $3.49
-Spiced Indian tea with milk | Allergens: Dairy
-
-### Soft Drinks - $2.49
-Coke, Diet Coke, Sprite, Fanta
-
-### Bottled Water - $1.99
+- 20oz Soda (Coke, Diet Coke, Coke Zero, Sprite, Fanta, Root Beer): $2.49
+- Mexican Soda (Coke, Sprite, Fanta): $2.49
+- Mango Lassi: $4.99
+- Water Bottle: $0.99
 
 ================================================================================
-🍨 DESSERTS
+🍰 DESSERTS
 ================================================================================
 
-### Gulab Jamun (2 pieces) - $4.99
-Sweet milk dumplings in rose syrup | Allergens: Dairy, Gluten
-
-### Kheer (Rice Pudding) - $4.99
-Creamy rice pudding with cardamom | Allergens: Dairy, Nuts
-
-### Mango Kulfi - $5.99
-Indian mango ice cream | Allergens: Dairy, Nuts
+- Brownie: $7.99
+- Chocolate Chip Cookie: $7.99
+- Flourless Chocolate Cake (GF): $3.99
 
 ================================================================================
-➕ EXTRAS & CUSTOMIZATIONS
+🔧 BUILD YOUR OWN PIZZA
 ================================================================================
 
-- Extra Cheese: +$2.50
-- Extra Meat/Paneer: +$3.50
-- Gluten-Free Crust: +$3.00
-- Dairy-Free Cheese: +$2.00
-- Extra Spicy: FREE
-- Side of Raita: $2.99
-- Side of Chutney (Mint/Tamarind): $1.99
+Base Price (includes one topping):
+- Small (10"): $14.99
+- Medium (12"): $17.99
+- Large (14"): $22.99
+- X-Large (18"): $27.99
+- Gluten-Free (12"): $19.99
+- Cauliflower Crust (12"): $19.99
+
+Additional Toppings: $1.99 each
+Premium Toppings: $2.99 each (marked with *)
+
+**Sauces:** BBQ Sauce, Curry Sauce (v), Malai Sauce, Pesto Sauce, Red Sauce, Shahi Sauce, Vegan Red Sauce, White Garlic Sauce
+
+**Cheese:** Mozzarella Cheese, Vegan Cheese
+
+**Meats:** Achari Chicken*, Bacon, Beef, Chicken, Chicken Tikka*, Curry Chicken*, Ham, Halal Ground Lamb*, Pepperoni, Salami, Sausage, Tandoori Chicken*
+
+**Veggies:** Aloo*, Artichokes, Bell Pepper, Black Olives, Cilantro, Diced Tomatoes, Garlic, Ginger, Green Onions, Green Chili, Gobhi*, Jalapenos, Masala Paneer*, Mushrooms, Pineapple, Red Onions, Spinach, Zucchini
+
+================================================================================
+⚠️ ALLERGEN INFORMATION
+================================================================================
+
+**CRUSTS:**
+- Regular Pizza Dough: Contains Dairy, Gluten
+- Gluten-Free Crust: No Dairy, No Eggs, No Gluten
+- Cauliflower Crust: Contains Dairy, Eggs, No Gluten
+
+**CHEESE:**
+- Regular Cheese: Contains Dairy, NO ANIMAL RENNET
+- Vegan Cheese: No Dairy, No Eggs, No Gluten
+
+**SAUCES:**
+- Curry Sauce: VEGAN (No Dairy, No Eggs, No Gluten)
+- BBQ Sauce: VEGAN (No Dairy, No Eggs, No Gluten)
+- Vegan Red Sauce (Jain): VEGAN, NO ONION/GARLIC/GINGER
+- White Garlic Sauce: Contains Dairy, Eggs
+- Malai Sauce: Contains Dairy, Eggs
+- Shahi Sauce: Contains Dairy, Eggs
+- Pesto Basil Sauce: Contains Dairy
+- Marinara Sauce: Contains Dairy
+- Caesar Dressing: Contains Dairy, Eggs, MAY CONTAIN ANCHOVY
+
+**NUT DISCLAIMER:** We do not use nuts in any products, but some ingredients may be processed in facilities that handle nuts. Cross-contamination possible.
+
+================================================================================
+🍕 HALF N' HALF PIZZA
+================================================================================
+
+Choose two different pizzas on one pie!
+- Large (14"): $29.99
+- X-Large (18"): $37.99
 
 ================================================================================
 """
 
 # System message for the AI chatbot
 SYSTEM_MESSAGE = f"""
-You are a smart, helpful menu assistant for Curry Pizza House - an Indian fusion pizza restaurant.
+You are a helpful menu assistant for Curry Pizza House (Portland location). Your job is to answer customer questions about our menu accurately using ONLY the information provided below.
 
-=== YOUR KNOWLEDGE BASE ===
+=== COMPLETE MENU DATA ===
 {MENU_DATA}
 
 === CRITICAL INSTRUCTIONS ===
 
-1. **FUZZY MATCHING - UNDERSTAND PARTIAL NAMES:**
-   - "curry chicken" or "chicken curry" → Suggest: Butter Chicken Pizza, Chicken Tikka Masala Pizza, Tandoori Chicken Pizza
-   - "curry pizza" → Ask: "We have several curry pizzas! Are you looking for chicken curry (Butter Chicken, Tikka Masala), lamb curry (Keema), or vegetarian curry options?"
-   - "veggie" or "veg" → Show all vegetarian options
-   - "gobhi" or "gobi" → Achari Gobhi Pizza or Aloo Gobi Pizza
-   - "paneer" → Paneer Tikka Pizza or Saag Paneer Pizza
-   - "lamb" or "mutton" → Keema Pizza
-   - "spicy" → Suggest Vindaloo (hottest), Tandoori, or Achari Gobhi
+1. **ANSWER ONLY FROM THE MENU DATA ABOVE**
+   - Do NOT make up items that don't exist
+   - If an item doesn't exist, say "We don't have that on our menu" and suggest similar items
 
-2. **ALWAYS ASK CLARIFYING QUESTIONS when query is ambiguous:**
-   - If customer says "curry pizza" → "Which type of curry pizza? We have: 1) Butter Chicken 2) Tikka Masala 3) Tandoori Chicken 4) Vegetarian options like Paneer Tikka"
-   - If customer says "chicken" → "Which chicken pizza? 1) Butter Chicken (mild, creamy) 2) Tikka Masala (medium spice) 3) Tandoori (smoky, spicy)"
+2. **WHEN ASKED ABOUT A SPECIFIC PIZZA:**
+   Always provide:
+   - Full name
+   - All toppings/ingredients
+   - ALL prices (Small/Medium/Large/X-Large/GF/Cauliflower)
+   - Category (Veg/Non-Veg)
+   - Relevant allergen info
 
-3. **WINGS - ALWAYS SHOW QUANTITY PRICING:**
-   When asked about wings, ALWAYS show:
-   - Tandoori Wings: 6 for $8.99 | 12 for $15.99 | 18 for $22.99 | 24 for $28.99
-   - Curry Wings: 6 for $9.99 | 12 for $17.99 | 18 for $24.99 | 24 for $31.99
-   - Boneless: 8 for $9.99 | 16 for $17.99 | 24 for $24.99
+3. **CHILLI PANEER PIZZA** (Important - this exists!):
+   - Toppings: Curry sauce, cheese, bell peppers, diced tomatoes, red onions, masala paneer, green onions and fresh cilantro
+   - Prices: Small $17.99 | Medium $22.99 | Large $29.99 | X-Large $37.99 | GF $25.99
+   - Category: Vegetarian
 
-4. **DETAILED RESPONSES - Always include:**
-   - Full name of item
-   - ALL prices (Small/Medium/Large or quantity options)
-   - Key ingredients/toppings
-   - Spice level
-   - Allergens
-   - Halal status for meat items
-   - Vegan option if available
+4. **WINGS PRICING:**
+   - 5 Pieces: $8.99
+   - 10 Pieces: $16.99
+   - 20 Pieces Sampler: $29.99 (up to 4 flavors)
+   - Flavors: Boneless Tikka, Curry, Tandoori, BBQ, Lemon Pepper, Achari, Hot, Mango Habanero
 
-5. **NO BBQ SAUCE:**
-   - We don't have BBQ sauce - explain we use Indian curry sauces instead
-   - Suggest similar: "Instead of BBQ, try our Tandoori Wings or Butter Chicken Pizza!"
+5. **PIZZA SLICES:**
+   - Personal 8": 6 slices
+   - Small 10": 8 slices
+   - Medium 12": 10 slices
+   - Large 14": 12 slices
+   - X-Large 18": 16 slices
 
-6. **HALAL QUERIES:**
-   - All chicken = Halal ✓
-   - Lamb (Keema) = Halal ✓
-   - ONLY Vindaloo = NOT Halal (contains pork)
+6. **FUZZY MATCHING - Understand similar names:**
+   - "paneer pizza" → Show: Chilli Paneer, Malai Paneer, Palak Paneer, Shahi Paneer
+   - "curry chicken" or "chicken curry" → Show: Curry Chicken Masala, Butter Chicken, Chicken Tikka
+   - "gobhi" or "gobi" or "cauliflower" → Show: Achari Gobhi, Aloo Gobhi
+   - "lamb" → Lamb Kabob (Halal)
+   - "vegetarian" or "veg" → List all vegetarian pizzas
 
-7. **RESPONSE FORMAT:**
+7. **HALAL INFO:**
+   - Lamb Kabob pizza uses HALAL ground lamb
+   - Other meats are not specified as halal
+
+8. **RESPONSE FORMAT:**
    - Use bullet points for clarity
-   - Bold important info like prices
-   - Use emojis sparingly (🍕 🌶️ ⭐ 🌱)
-   - Keep responses organized and scannable
+   - Always show ALL available sizes and prices
+   - Use 🌱 for vegetarian, 🍗 for chicken, 🥩 for meat
+   - Keep responses organized and easy to read
+
+9. **IF ITEM DOESN'T EXIST:**
+   Say: "We don't have [item] on our menu. However, we do have [similar items]. Would you like details on any of these?"
 
 === EXAMPLE RESPONSES ===
 
+**User: "chilli paneer" or "chili paneer"**
+Response: "Here are the details for our **Chilli Paneer Pizza** 🌱:
+
+**Toppings:** Curry sauce, cheese, bell peppers, diced tomatoes, red onions, masala paneer, green onions and fresh cilantro
+
+**Prices:**
+- Small (10"): $17.99 (8 slices)
+- Medium (12"): $22.99 (10 slices)
+- Large (14"): $29.99 (12 slices)
+- X-Large (18"): $37.99 (16 slices)
+- Gluten-Free (12"): $25.99
+- Cauliflower Crust (12"): $25.99
+
+**Category:** Vegetarian 🌱
+
+Would you like to order or know about other paneer pizzas?"
+
 **User: "wings"**
-Response: "We have delicious Indian-style wings! 🍗
+Response: "Here are our wing options 🍗:
 
-**Tandoori Wings** (Bone-In) - Our Signature!
-• 6 Wings: $8.99
-• 12 Wings: $15.99
-• 18 Wings: $22.99
-• 24 Wings: $28.99
-Sauce options: Mint Chutney, Mango Habanero, Tikka Masala Glaze
+**Pricing:**
+- 5 Pieces: $8.99
+- 10 Pieces: $16.99
+- 20 Pieces Sampler: $29.99 (choose up to 4 flavors, 5 pieces each)
 
-**Curry Chicken Wings** (Bone-In)
-• 6 Wings: $9.99
-• 12 Wings: $17.99
-• 18 Wings: $24.99
-• 24 Wings: $31.99
-Sauce options: Butter Chicken, Tikka Masala, Vindaloo
+**Available Flavors:**
+- Boneless Tikka
+- Curry
+- Tandoori
+- BBQ
+- Lemon Pepper
+- Achari
+- Hot
+- Mango Habanero
 
-**Boneless Wings**
-• 8 Pieces: $9.99
-• 16 Pieces: $17.99
-• 24 Pieces: $24.99
+**Dips (add-on):** Ranch, Jalapeno Ranch, Marinara, BBQ Sauce - $0.50 each
 
-All wings are halal! Which would you like?"
+Which flavor would you like?"
 
-**User: "curry chicken"**
-Response: "We have 3 curry chicken pizzas! Which sounds good?
+**User: "how many slices in large pizza"**
+Response: "A **Large 14" pizza** has **12 slices**.
 
-1. **Butter Chicken Pizza** ⭐ Bestseller
-   - Creamy, mild curry sauce with tender chicken
-   - Small $14.99 | Medium $18.99 | Large $22.99
+Here's the slice count for all sizes:
+- Personal 8": 6 slices
+- Small 10": 8 slices
+- Medium 12": 10 slices
+- Large 14": 12 slices
+- X-Large 18": 16 slices
 
-2. **Chicken Tikka Masala Pizza**
-   - Spiced tomato-cream sauce, medium heat
-   - Small $15.99 | Medium $19.99 | Large $23.99
+Would you like to order a pizza?"
 
-3. **Tandoori Chicken Pizza**
-   - Smoky tandoori chicken with mint chutney
-   - Small $14.99 | Medium $18.99 | Large $22.99
-
-All are halal! Would you like more details on any of these?"
-
-**User: "is lamb halal"**
-Response: "Yes! Our **Keema Pizza** uses certified halal lamb. 🍕
-
-**Keema Pizza Details:**
-• Small (10"): $15.99
-• Medium (12"): $19.99
-• Large (14"): $23.99
-• Toppings: Spiced minced lamb, green peas, onions, garam masala
-• Spice Level: Medium
-• Halal: YES ✓ - Certified Halal Lamb
-
-Would you like to order one?"
-
-Remember: Be helpful, precise, and always provide complete pricing information!
+Remember: Be accurate, helpful, and only provide information from the actual menu!
 """
 
-# Chat session storage (in-memory for simplicity, could be moved to MongoDB)
+# Chat session storage
 chat_sessions = {}
 
 
@@ -404,7 +444,7 @@ class StatusCheckCreate(BaseModel):
     client_name: str
 
 class ChatMessage(BaseModel):
-    role: str  # 'user' or 'assistant'
+    role: str
     content: str
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
@@ -418,7 +458,6 @@ class ChatResponse(BaseModel):
     timestamp: datetime
 
 
-# Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
     return {"message": "Welcome to Curry Pizza House API!"}
@@ -445,10 +484,8 @@ async def get_status_checks():
 async def chat(request: ChatRequest):
     """Handle chat messages with AI-powered responses"""
     try:
-        # Generate or use existing session ID
         session_id = request.session_id or str(uuid.uuid4())
         
-        # Get or create chat instance for this session
         if session_id not in chat_sessions:
             if not EMERGENT_LLM_KEY:
                 raise HTTPException(status_code=500, detail="LLM API key not configured")
@@ -457,17 +494,15 @@ async def chat(request: ChatRequest):
                 api_key=EMERGENT_LLM_KEY,
                 session_id=session_id,
                 system_message=SYSTEM_MESSAGE
-            ).with_model("openai", "gpt-4o-mini").with_params(temperature=0.7, max_tokens=800)
+            ).with_model("openai", "gpt-4o-mini").with_params(temperature=0.3, max_tokens=1000)
             
             chat_sessions[session_id] = chat_instance
         else:
             chat_instance = chat_sessions[session_id]
         
-        # Send message and get response
         user_msg = UserMessage(text=request.message)
         response_text = await chat_instance.send_message(user_msg)
         
-        # Store conversation in MongoDB for persistence
         conversation_doc = {
             "session_id": session_id,
             "user_message": request.message,
@@ -489,124 +524,10 @@ async def chat(request: ChatRequest):
 
 @api_router.get("/menu")
 async def get_menu():
-    """Return the menu data as structured JSON"""
-    return {
-        "wings": [
-            {
-                "name": "Tandoori Wings (Bone-In)",
-                "description": "Marinated in yogurt and tandoori spices",
-                "prices": {"6pc": 8.99, "12pc": 15.99, "18pc": 22.99, "24pc": 28.99},
-                "halal": True
-            },
-            {
-                "name": "Curry Chicken Wings (Bone-In)",
-                "description": "Tossed in signature curry sauce",
-                "prices": {"6pc": 9.99, "12pc": 17.99, "18pc": 24.99, "24pc": 31.99},
-                "halal": True
-            },
-            {
-                "name": "Boneless Wings",
-                "description": "Crispy boneless chicken pieces",
-                "prices": {"8pc": 9.99, "16pc": 17.99, "24pc": 24.99},
-                "halal": True
-            }
-        ],
-        "curry_chicken_pizzas": [
-            {
-                "name": "Butter Chicken Pizza",
-                "prices": {"small": 14.99, "medium": 18.99, "large": 22.99},
-                "description": "Creamy butter chicken curry sauce with tender chicken",
-                "spice_level": "Mild",
-                "halal": True,
-                "popular": True
-            },
-            {
-                "name": "Chicken Tikka Masala Pizza",
-                "prices": {"small": 15.99, "medium": 19.99, "large": 23.99},
-                "description": "Spiced chicken tikka with tomato masala sauce",
-                "spice_level": "Medium",
-                "halal": True
-            },
-            {
-                "name": "Tandoori Chicken Pizza",
-                "prices": {"small": 14.99, "medium": 18.99, "large": 22.99},
-                "description": "Smoky tandoori chicken with mint chutney",
-                "spice_level": "Medium-Hot",
-                "halal": True
-            },
-            {
-                "name": "Keema Pizza (Lamb)",
-                "prices": {"small": 15.99, "medium": 19.99, "large": 23.99},
-                "description": "Spiced minced halal lamb with peas",
-                "spice_level": "Medium",
-                "halal": True
-            },
-            {
-                "name": "Vindaloo Pizza",
-                "prices": {"small": 15.99, "medium": 19.99, "large": 23.99},
-                "description": "Fiery vindaloo pork - very spicy!",
-                "spice_level": "Extra Hot",
-                "halal": False,
-                "contains_pork": True
-            }
-        ],
-        "vegetarian_pizzas": [
-            {
-                "name": "Paneer Tikka Pizza",
-                "prices": {"small": 13.99, "medium": 17.99, "large": 21.99},
-                "description": "Marinated paneer cubes with spiced tomato sauce",
-                "vegetarian": True
-            },
-            {
-                "name": "Achari Gobhi Pizza",
-                "prices": {"small": 12.99, "medium": 16.99, "large": 20.99},
-                "description": "Pickle-spiced cauliflower with tangy achari masala",
-                "vegetarian": True,
-                "vegan_available": True,
-                "popular": True
-            },
-            {
-                "name": "Saag Paneer Pizza",
-                "prices": {"small": 13.99, "medium": 17.99, "large": 21.99},
-                "description": "Creamy spinach with paneer cubes",
-                "vegetarian": True
-            },
-            {
-                "name": "Aloo Gobi Pizza",
-                "prices": {"small": 11.99, "medium": 15.99, "large": 19.99},
-                "description": "Classic potato and cauliflower with turmeric",
-                "vegetarian": True
-            },
-            {
-                "name": "Chana Masala Pizza",
-                "prices": {"small": 12.99, "medium": 16.99, "large": 20.99},
-                "description": "Spiced chickpeas with tomatoes",
-                "vegetarian": True,
-                "vegan_available": True
-            },
-            {
-                "name": "Malai Kofta Pizza",
-                "prices": {"small": 14.99, "medium": 18.99, "large": 22.99},
-                "description": "Creamy veggie koftas in tomato-cream sauce",
-                "vegetarian": True
-            }
-        ],
-        "sides": [
-            {"name": "Garlic Naan Sticks", "price": 5.99},
-            {"name": "Vegetable Samosas (2pc)", "price": 4.99},
-            {"name": "Chicken Samosas (2pc)", "price": 5.99},
-            {"name": "Paneer Pakora (6pc)", "price": 7.99},
-            {"name": "Onion Bhaji (6pc)", "price": 5.99}
-        ],
-        "beverages": [
-            {"name": "Mango Lassi", "price": 4.99},
-            {"name": "Sweet Lassi", "price": 3.99},
-            {"name": "Masala Chai", "price": 3.49}
-        ]
-    }
+    """Return the menu data"""
+    return {"menu": "See /api/chat for interactive menu assistance"}
 
 
-# Include the router in the main app
 app.include_router(api_router)
 
 app.add_middleware(
@@ -617,7 +538,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
