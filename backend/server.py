@@ -31,79 +31,117 @@ EMERGENT_LLM_KEY = os.environ.get('EMERGENT_LLM_KEY', '')
 
 # Curry Pizza House Menu Data
 MENU_DATA = """
-# Curry Pizza House Menu
+# Curry Pizza House Menu - Indian Fusion Pizzas
 
-## Signature Curry Pizzas
+## IMPORTANT NOTES:
+- We are Curry Pizza House - an Indian fusion pizza restaurant
+- We do NOT use BBQ sauce on any pizzas - we use traditional Indian curry sauces and spices
+- Our signature base sauces are: Curry sauce, Tikka Masala sauce, Mint Chutney, Creamy Spinach (Saag), and Spiced Tomato sauce
+- HALAL: Our Keema Pizza uses halal lamb. Our chicken is also halal-certified.
+- PORK: Only our Vindaloo Pizza contains pork (not halal)
 
-### 1. Butter Chicken Pizza
+## Signature Curry Pizzas (11 Total)
+
+### 1. Butter Chicken Pizza ⭐ BESTSELLER
 - **Price:** Small $14.99 | Medium $18.99 | Large $22.99
-- **Description:** Creamy butter chicken with bell peppers, onions, and cilantro on our signature curry-infused crust
+- **Description:** Creamy butter chicken curry sauce with tender chicken, bell peppers, onions, and cilantro on our signature curry-infused crust
+- **Sauce:** Creamy Butter Chicken Curry Sauce (tomato-cream based with Indian spices)
+- **Toppings:** Chicken pieces, bell peppers, onions, cilantro
 - **Allergens:** Dairy, Gluten, Nuts (cashew paste)
-- **Dietary:** Contains dairy and gluten
+- **Halal:** Yes, chicken is halal-certified
+- **Spice Level:** Mild
 
 ### 2. Tikka Masala Pizza
 - **Price:** Small $15.99 | Medium $19.99 | Large $23.99
 - **Description:** Spiced chicken tikka with tomato masala sauce, roasted peppers, and fresh mozzarella
+- **Sauce:** Tikka Masala Sauce (spiced tomato-cream)
+- **Toppings:** Chicken tikka pieces, roasted bell peppers, onions, mozzarella
 - **Allergens:** Dairy, Gluten
-- **Dietary:** Contains dairy and gluten
+- **Halal:** Yes, chicken is halal-certified
+- **Spice Level:** Medium
 
 ### 3. Paneer Tikka Pizza (Vegetarian)
 - **Price:** Small $13.99 | Medium $17.99 | Large $21.99
 - **Description:** Marinated paneer cubes with spiced tomato sauce, onions, and fresh herbs
+- **Sauce:** Spiced Tomato Tikka Sauce
+- **Toppings:** Paneer cubes, onions, bell peppers, fresh herbs
 - **Allergens:** Dairy, Gluten
-- **Dietary:** Vegetarian
+- **Halal:** Vegetarian (no meat)
+- **Spice Level:** Medium
 
 ### 4. Tandoori Chicken Pizza
 - **Price:** Small $14.99 | Medium $18.99 | Large $22.99
 - **Description:** Smoky tandoori chicken with mint chutney, red onions, and jalapeños
+- **Sauce:** Mint Chutney base with tandoori spices
+- **Toppings:** Tandoori chicken, red onions, jalapeños, cilantro
 - **Allergens:** Dairy, Gluten
-- **Dietary:** Contains dairy and gluten
-
-### 5. Achari Gobhi Pizza (Vegetarian) ⭐ POPULAR
-- **Price:** Small $12.99 | Medium $16.99 | Large $20.99
-- **Description:** Pickle-spiced cauliflower (gobhi) with tangy achari masala, green chilies, and fresh coriander on a crispy crust
-- **Allergens:** Gluten, Mustard
-- **Dietary:** Vegetarian, Vegan option available (no cheese)
+- **Halal:** Yes, chicken is halal-certified
 - **Spice Level:** Medium-Hot
 
-### 6. Keema Pizza
+### 5. Achari Gobhi Pizza (Vegetarian) ⭐ MOST POPULAR
+- **Price:** Small $12.99 | Medium $16.99 | Large $20.99
+- **Description:** Pickle-spiced cauliflower (gobhi) with tangy achari masala, green chilies, and fresh coriander
+- **Sauce:** Achari (pickle) Masala Sauce - tangy and spicy
+- **Toppings:** Spiced cauliflower, green chilies, fresh coriander, pickled spices
+- **Allergens:** Gluten, Mustard
+- **Halal:** Vegetarian (no meat)
+- **Vegan Option:** Available without cheese
+- **Spice Level:** Medium-Hot 🌶️
+
+### 6. Keema Pizza (Lamb) ⭐ HALAL LAMB
 - **Price:** Small $15.99 | Medium $19.99 | Large $23.99
-- **Description:** Spiced minced lamb with peas, onions, and garam masala
+- **Description:** Spiced minced halal lamb with peas, onions, and garam masala
+- **Sauce:** Spiced Tomato Keema Sauce
+- **Toppings:** Minced lamb, green peas, onions, garam masala spices
 - **Allergens:** Dairy, Gluten
-- **Dietary:** Contains dairy and gluten
+- **Halal:** YES - Uses certified halal lamb
+- **Spice Level:** Medium
 
 ### 7. Saag Paneer Pizza (Vegetarian)
 - **Price:** Small $13.99 | Medium $17.99 | Large $21.99
 - **Description:** Creamy spinach with paneer cubes, garlic, and Indian spices
+- **Sauce:** Creamy Saag (Spinach) Sauce
+- **Toppings:** Paneer cubes, garlic, Indian spices
 - **Allergens:** Dairy, Gluten
-- **Dietary:** Vegetarian
+- **Halal:** Vegetarian (no meat)
+- **Spice Level:** Mild
 
-### 8. Vindaloo Pizza (Spicy!)
+### 8. Vindaloo Pizza (Spicy!) ⚠️ CONTAINS PORK
 - **Price:** Small $15.99 | Medium $19.99 | Large $23.99
 - **Description:** Fiery vindaloo pork with potatoes and hot chilies - for spice lovers!
+- **Sauce:** Vindaloo Curry Sauce (very spicy)
+- **Toppings:** Pork pieces, potatoes, hot chilies
 - **Allergens:** Dairy, Gluten
-- **Dietary:** Very Spicy
+- **Halal:** NO - Contains pork
 - **Spice Level:** Extra Hot 🔥🔥🔥
-
-## Vegetarian Options
 
 ### 9. Chana Masala Pizza (Vegan Available)
 - **Price:** Small $12.99 | Medium $16.99 | Large $20.99
 - **Description:** Spiced chickpeas with tomatoes, onions, and aromatic spices
-- **Allergens:** Gluten (Vegan: no dairy allergens)
-- **Dietary:** Vegetarian, Vegan option available
+- **Sauce:** Chana Masala Sauce (spiced tomato)
+- **Toppings:** Chickpeas, tomatoes, onions, cumin, coriander
+- **Allergens:** Gluten (Vegan option: no dairy)
+- **Halal:** Vegetarian (no meat)
+- **Vegan Option:** Available without cheese
+- **Spice Level:** Medium
 
 ### 10. Aloo Gobi Pizza (Vegetarian)
 - **Price:** Small $11.99 | Medium $15.99 | Large $19.99
 - **Description:** Classic potato and cauliflower with turmeric and cumin
+- **Sauce:** Turmeric-Cumin Spiced Sauce
+- **Toppings:** Potatoes, cauliflower, turmeric, cumin seeds
 - **Allergens:** Dairy, Gluten
-- **Dietary:** Vegetarian
+- **Halal:** Vegetarian (no meat)
+- **Spice Level:** Mild
 
 ### 11. Malai Kofta Pizza (Vegetarian)
 - **Price:** Small $14.99 | Medium $18.99 | Large $22.99
 - **Description:** Creamy veggie koftas in rich tomato-cream sauce
+- **Sauce:** Malai (Cream) Tomato Sauce
+- **Toppings:** Vegetable kofta balls, cream sauce, nuts
 - **Allergens:** Dairy, Gluten, Nuts
-- **Dietary:** Vegetarian
+- **Halal:** Vegetarian (no meat)
+- **Spice Level:** Mild
 
 ## Sides & Extras
 
@@ -113,11 +151,13 @@ MENU_DATA = """
 - **Extra Cheese:** $2.50
 - **Extra Spicy Option:** Free (just ask!)
 
-## Allergen Information Summary
+## Allergen & Dietary Information
 - **Gluten-Free Crust:** Available for +$3.00 on any pizza
 - **Dairy-Free Cheese:** Available for +$2.00 on any pizza
 - **Nut Allergies:** Butter Chicken and Malai Kofta contain nuts
 - **Mustard Allergy:** Achari Gobhi contains mustard
+- **Halal Options:** All chicken and lamb are halal-certified. Only Vindaloo (pork) is NOT halal.
+- **Vegan Options:** Achari Gobhi and Chana Masala available vegan (no cheese)
 
 ## Popular Combinations
 1. **Achari Gobhi Pizza** - Our bestselling vegetarian option!
