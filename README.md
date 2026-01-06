@@ -1,35 +1,14 @@
 # Curry Pizza House AI Chat Assistant
 
-An AI-powered menu assistant chatbot for Curry Pizza House that helps customers explore the menu, ask about ingredients, allergens, and get recommendations.
+A minimal, embeddable AI-powered chat widget for Curry Pizza House.
 
-## Features
+## 🎯 What This Is
 
-- 🍕 **Menu Information**: Get details about all pizzas, wings, appetizers, and more
-- 🌱 **Dietary Options**: Find vegetarian, vegan, and Jain-friendly options
-- ⚠️ **Allergen Info**: Get allergen information for sauces, crusts, and ingredients
-- 🍗 **Wings Menu**: 8 flavors available in multiple sizes
-- 🔧 **Build Your Own**: Information about custom pizza options
-
-## Popular Pizzas
-
-### Indian Craft Non-Veg
-- Butter Chicken ⭐
-- Tandoori Chicken ⭐
-- Chicken Tikka ⭐
-
-### Indian Craft Veg
-- Chilli Paneer ⭐
-- Achari Gobhi ⭐
-- Curry Veggie Delight ⭐
-
-### Regular Standard
-- Classic Combination ⭐
-- Meat Lover's ⭐
-- Hawaiian ⭐
+A **chat-only interface** that can be embedded on www.currypizzahouse.com as a widget. No landing page - just the AI chat assistant.
 
 ---
 
-## 🔌 How to Embed "Ask AI" Chat Button on www.currypizzahouse.com
+## 🔌 How to Embed on www.currypizzahouse.com
 
 ### RECOMMENDED: "Ask AI" Floating Button
 
@@ -62,10 +41,6 @@ Copy and paste this code before the closing `</body>` tag on your website:
     box-shadow: 0 6px 25px rgba(255, 107, 0, 0.5);
   }
   
-  #cph-chat-button:active {
-    transform: translateY(0);
-  }
-  
   #cph-chat-button svg {
     width: 22px;
     height: 22px;
@@ -76,7 +51,6 @@ Copy and paste this code before the closing `</body>` tag on your website:
     color: white;
     font-size: 15px;
     font-weight: 600;
-    letter-spacing: 0.3px;
   }
   
   /* Chat Window */
@@ -84,11 +58,11 @@ Copy and paste this code before the closing `</body>` tag on your website:
     position: fixed;
     bottom: 90px;
     right: 24px;
-    width: 400px;
-    height: 580px;
+    width: 380px;
+    height: 600px;
     border: none;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
     z-index: 99998;
     display: none;
     overflow: hidden;
@@ -97,52 +71,18 @@ Copy and paste this code before the closing `</body>` tag on your website:
   
   #cph-chat-container.open {
     display: block;
-    animation: slideUp 0.3s ease;
+    animation: cphSlideUp 0.3s ease;
   }
   
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  @keyframes cphSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
   
   #cph-chat-iframe {
     width: 100%;
     height: 100%;
     border: none;
-  }
-  
-  /* Close button */
-  #cph-close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 30px;
-    height: 30px;
-    background: rgba(0, 0, 0, 0.1);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    transition: background 0.2s;
-  }
-  
-  #cph-close-btn:hover {
-    background: rgba(0, 0, 0, 0.2);
-  }
-  
-  #cph-close-btn svg {
-    width: 14px;
-    height: 14px;
-    stroke: #333;
   }
   
   /* Mobile Responsive */
@@ -153,17 +93,12 @@ Copy and paste this code before the closing `</body>` tag on your website:
       padding: 10px 16px;
     }
     
-    #cph-chat-button span {
-      font-size: 14px;
-    }
-    
     #cph-chat-container {
       width: calc(100% - 32px);
-      height: 75vh;
+      height: 80vh;
       bottom: 80px;
       right: 16px;
       left: 16px;
-      border-radius: 16px;
     }
   }
 </style>
@@ -178,139 +113,128 @@ Copy and paste this code before the closing `</body>` tag on your website:
 
 <!-- Chat Container -->
 <div id="cph-chat-container">
-  <button id="cph-close-btn" onclick="toggleCPHChat()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M18 6L6 18M6 6l12 12"/>
-    </svg>
-  </button>
   <iframe id="cph-chat-iframe" src="https://pickle-gobi-pizza.emergent.host"></iframe>
 </div>
 
 <script>
   function toggleCPHChat() {
-    const container = document.getElementById('cph-chat-container');
+    var container = document.getElementById('cph-chat-container');
     container.classList.toggle('open');
   }
-  
-  // Close chat when clicking outside (optional)
-  document.addEventListener('click', function(e) {
-    const container = document.getElementById('cph-chat-container');
-    const button = document.getElementById('cph-chat-button');
-    if (container.classList.contains('open') && 
-        !container.contains(e.target) && 
-        !button.contains(e.target)) {
-      container.classList.remove('open');
-    }
-  });
 </script>
 <!-- End Curry Pizza House Chat Widget -->
 ```
 
 ---
 
-## 🎨 Button Preview
+## 🎨 Preview
 
-The "Ask AI" button will look like this:
-
+### Button (Bottom-Right Corner):
 ```
-┌─────────────────────────────────────────────────┐
-│                                                 │
-│              Your Website Content               │
-│                                                 │
-│                                                 │
-│                          ┌──────────────────┐   │
-│                          │  💬  Ask AI      │   │
-│                          └──────────────────┘   │
-└─────────────────────────────────────────────────┘
+┌─────────────────────────────────┐
+│                                 │
+│    Your currypizzahouse.com     │
+│         website content         │
+│                                 │
+│                 ┌─────────────┐ │
+│                 │ 💬 Ask AI   │ │
+│                 └─────────────┘ │
+└─────────────────────────────────┘
+```
 
-When clicked:
-┌─────────────────────────────────────────────────┐
-│                              ┌────────────────┐ │
-│                              │ ✕              │ │
-│                              │                │ │
-│                              │  Chat Window   │ │
-│                              │                │ │
-│                              │                │ │
-│                              └────────────────┘ │
-│                          ┌──────────────────┐   │
-│                          │  💬  Ask AI      │   │
-│                          └──────────────────┘   │
-└─────────────────────────────────────────────────┘
+### When Clicked (Chat Opens):
+```
+┌─────────────────────────────────┐
+│              ┌────────────────┐ │
+│              │ 🍕 Curry Pizza │ │
+│              │ AI Assistant   │ │
+│              │                │ │
+│              │ Chat messages  │ │
+│              │ appear here... │ │
+│              │                │ │
+│              │ [Quick Actions]│ │
+│              │ [Input Field]  │ │
+│              └────────────────┘ │
+│                 ┌─────────────┐ │
+│                 │ 💬 Ask AI   │ │
+│                 └─────────────┘ │
+└─────────────────────────────────┘
 ```
 
 ---
 
-## 🛠️ Installation Steps for www.currypizzahouse.com
+## 🛠️ Installation Steps
 
-### Step 1: Access Your Website Code
-- **WordPress**: Go to Appearance → Theme Editor → footer.php
-- **Squarespace**: Settings → Advanced → Code Injection → Footer
-- **Wix**: Settings → Custom Code → Body - End
-- **Shopify**: Online Store → Themes → Edit Code → theme.liquid
+### For WordPress:
+1. Go to **Appearance → Theme Editor → footer.php**
+2. Paste the code before `</body>`
+3. Click **Update File**
 
-### Step 2: Paste the Code
-- Copy the entire code block above
-- Paste it just before `</body>`
-- Save/Publish changes
+### For Squarespace:
+1. Go to **Settings → Advanced → Code Injection**
+2. Paste in the **Footer** section
+3. Save
 
-### Step 3: Update URL (After Emergent Changes It)
-- Replace `https://pickle-gobi-pizza.emergent.host` with `https://cph-ai-assistant.emergent.host`
+### For Wix:
+1. Go to **Settings → Custom Code**
+2. Add new code to **Body - End**
+3. Apply to **All pages**
 
-### Step 4: Test
-1. Visit your website
-2. Look for the orange "Ask AI" button in bottom-right
-3. Click to open chat
-4. Test queries like "What's on the Butter Chicken pizza?"
+### For Shopify:
+1. Go to **Online Store → Themes → Edit Code**
+2. Find **theme.liquid**
+3. Paste before `</body>`
+4. Save
 
 ---
 
-## 🎨 Customization Options
+## ✏️ Customization
 
-### Change Button Colors
-Find this line and modify the colors:
-```css
-background: linear-gradient(135deg, #FF6B00 0%, #E63900 100%);
-```
-- `#FF6B00` = Orange (primary)
-- `#E63900` = Red-Orange (secondary)
-
-### Change Button Text
-Find this line and change the text:
+### Change Button Text:
 ```html
 <span>Ask AI</span>
 ```
-Options: "Chat with AI", "Need Help?", "Ask Us", etc.
+Change to: "Chat", "Need Help?", "Menu Assistant", etc.
 
-### Change Button Position
-Modify these values:
+### Change Colors:
 ```css
-bottom: 24px;  /* Distance from bottom */
-right: 24px;   /* Distance from right */
+background: linear-gradient(135deg, #FF6B00 0%, #E63900 100%);
 ```
+- `#FF6B00` = Orange
+- `#E63900` = Red-Orange
 
-For left side:
+### Change Position (Left Side):
 ```css
-right: auto;
-left: 24px;
+#cph-chat-button {
+  right: auto;
+  left: 24px;
+}
+
+#cph-chat-container {
+  right: auto;
+  left: 24px;
+}
 ```
 
 ---
 
-## 🔄 URL Change Request
+## 🔄 URL Change
 
-**Current URL:** `pickle-gobi-pizza.emergent.host`
-**Desired URL:** `cph-ai-assistant.emergent.host`
+**Current:** `pickle-gobi-pizza.emergent.host`
+**Desired:** `cph-ai-assistant.emergent.host`
 
-**Contact:** support@emergentagent.com
+Contact: **support@emergentagent.com**
 
 ---
 
-## 📱 Mobile Responsive
+## 📱 Features
 
-The widget is fully responsive:
-- **Desktop**: 400px wide chat window
-- **Mobile**: Full-width (minus margins), 75% viewport height
-- Button adjusts size on mobile
+- ✅ **Chat-only interface** - No landing page
+- ✅ **Mobile responsive** - Works on all devices
+- ✅ **Quick action buttons** - Show menu, Vegetarian options, Popular pizzas, Wings, Allergen info
+- ✅ **AI-powered** - Answers questions about menu, ingredients, allergens
+- ✅ **No prices shown** - Directs to website for pricing
+- ✅ **Popular pizzas categorized** - Indian Craft, Regular Standard
 
 ---
 
